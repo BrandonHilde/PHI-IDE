@@ -1,0 +1,14 @@
+phi.Hello:OS16BITVideo
+{
+	str name:[40];
+	
+	log 'What is your name: ';
+	ask name;
+	log '\r\nhello: ' name;
+	log '\r\nPress any key to continue...';
+	
+	call OS16BITVideo.WaitForKeyPress;
+	
+	call OS16BITVideo.EnableVideoMode;
+	call OS16BITVideo.JumpToSectorTwo;
+}

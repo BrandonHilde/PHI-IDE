@@ -1,0 +1,136 @@
+[gd_scene load_steps=10 format=3 uid="uid://d21xawevkt0si"]
+
+[ext_resource type="Script" path="res://CodeEdit.cs" id="1_balps"]
+[ext_resource type="Script" path="res://DevTest.cs" id="1_q6qp2"]
+[ext_resource type="Script" path="res://FileTree.cs" id="2_0q1xl"]
+[ext_resource type="Texture2D" uid="uid://c8s57v1oxqtoj" path="res://play.svg" id="2_y31gn"]
+[ext_resource type="Texture2D" uid="uid://uwg6dhjv1kk1" path="res://stop.svg" id="3_78xuh"]
+[ext_resource type="Texture2D" uid="uid://bu8aogal447mw" path="res://phialt.png" id="6_wvtb1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6xbxv"]
+bg_color = Color(0.133333, 0.133333, 0.133333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d8007"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j68cx"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q6qp2")
+metadata/_edit_horizontal_guides_ = [-94.0]
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+split_offset = 200
+
+[node name="Panel" type="Panel" parent="HSplitContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6xbxv")
+
+[node name="Tree" type="Tree" parent="HSplitContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_0q1xl")
+
+[node name="VSplitContainer" type="VSplitContainer" parent="HSplitContainer"]
+layout_mode = 2
+split_offset = 500
+
+[node name="Control" type="Control" parent="HSplitContainer/VSplitContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="HSplitContainer/VSplitContainer/Control"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_d8007")
+
+[node name="CodeEdit" type="CodeEdit" parent="HSplitContainer/VSplitContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/background_color = Color(0.0666667, 0.0666667, 0.0666667, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_colors/line_number_color = Color(0.67069, 0.67069, 0.67069, 1)
+theme_override_constants/h_separation = 20
+text = " "
+highlight_current_line = true
+gutters_draw_line_numbers = true
+gutters_draw_fold_gutter = true
+script = ExtResource("1_balps")
+
+[node name="TextEdit" type="TextEdit" parent="HSplitContainer/VSplitContainer"]
+layout_mode = 2
+theme_override_colors/background_color = Color(0.0666667, 0.0666667, 0.0666667, 1)
+editable = false
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(0.0196078, 0.0196078, 0.0196078, 1)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 48.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_j68cx")
+
+[node name="OptionButton" type="OptionButton" parent="Panel"]
+layout_mode = 0
+offset_left = 1203.0
+offset_top = 10.0
+offset_right = 1351.0
+offset_bottom = 41.0
+selected = 0
+item_count = 2
+popup/item_0/text = "FASM"
+popup/item_1/text = "NASM"
+popup/item_1/id = 1
+
+[node name="Play" type="TextureButton" parent="."]
+modulate = Color(0.6, 0.831373, 0.482353, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -221.0
+offset_top = 10.0
+offset_right = 579.0
+offset_bottom = 810.0
+grow_horizontal = 0
+scale = Vector2(0.0378566, 0.0384183)
+texture_normal = ExtResource("2_y31gn")
+texture_pressed = ExtResource("3_78xuh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(24.75, 24.75)
+scale = Vector2(0.0944444, 0.0944444)
+texture = ExtResource("6_wvtb1")
+
+[connection signal="item_selected" from="HSplitContainer/Panel/Tree" to="HSplitContainer/Panel/Tree" method="_on_item_selected"]
+[connection signal="ready" from="HSplitContainer/VSplitContainer/Control/CodeEdit" to="HSplitContainer/VSplitContainer/Control/CodeEdit" method="_on_ready"]
+[connection signal="text_changed" from="HSplitContainer/VSplitContainer/Control/CodeEdit" to="HSplitContainer/VSplitContainer/Control/CodeEdit" method="_on_text_changed"]
+[connection signal="item_selected" from="Panel/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
