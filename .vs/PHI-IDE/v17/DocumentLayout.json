@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\labs\\Projects\\phi-ide\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D0E65046-5BE6-41F8-854F-BE4AC578BE51}|PHI-IDE.csproj|c:\\labs\\projects\\phi-ide\\phi-ide.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{D0E65046-5BE6-41F8-854F-BE4AC578BE51}|PHI-IDE.csproj|solutionrelative:phi-ide.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0E65046-5BE6-41F8-854F-BE4AC578BE51}|PHI-IDE.csproj|c:\\labs\\projects\\phi-ide\\phisyntax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0E65046-5BE6-41F8-854F-BE4AC578BE51}|PHI-IDE.csproj|solutionrelative:phisyntax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PHI-IDE",
+              "DocumentMoniker": "C:\\labs\\Projects\\phi-ide\\PHI-IDE.csproj",
+              "RelativeDocumentMoniker": "PHI-IDE.csproj",
+              "ToolTip": "C:\\labs\\Projects\\phi-ide\\PHI-IDE.csproj",
+              "RelativeToolTip": "PHI-IDE.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-07-21T01:38:45.924Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PhiSyntax.cs",
+              "DocumentMoniker": "C:\\labs\\Projects\\phi-ide\\PhiSyntax.cs",
+              "RelativeDocumentMoniker": "PhiSyntax.cs",
+              "ToolTip": "C:\\labs\\Projects\\phi-ide\\PhiSyntax.cs",
+              "RelativeToolTip": "PhiSyntax.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAAwBQAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-21T01:37:16.771Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

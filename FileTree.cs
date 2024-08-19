@@ -8,7 +8,14 @@ public partial class FileTree : Tree
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		ShowFiles();
+	}
+
+	public void ShowFiles()
+	{
 		string[] files = Directory.GetFiles(rootFolder);
+
+		Clear();
 
 		TreeItem root = CreateItem();
 		root.SetText(0, rootFolder);
