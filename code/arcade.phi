@@ -1,32 +1,25 @@
-phi.Hello:Bootloader
+phi.Hello:OS16BITVideo
 {
-
 	str hello: 'Hello, World!\r\n';
     str newline: '\r\n';
 	
 	log hello newline;
 	log 'Press any key to continue...';
 	
-	call Bootloader.WaitForKeyPress;
+	call OS16BIT.WaitForKeyPress;
 	
-	call Bootloader.EnableVideoMode;
-	call Bootloader.JumpToSectorTwo;
+	call OS16BITVideo.EnableVideoMode;
+	call OS16BIT.JumpToSectorTwo;
 }
 
-phi.Drawing:OS
+phi.Drawing:OS16BITSectorTwo
 {
-	
-	bln downW: false;
-	bln downS: false;
-	bln downO: false;
-	bln downL: false;
-	
+
 	int ScreenW: 320;
 	int ScreenH: 200;
 	
 	int lefty: 50;
 	int Bot: 90;
-	int BotRight: 90;
 	int botR: 0;
 	int botL: 0;
 	int direction: 0;
@@ -40,8 +33,6 @@ phi.Drawing:OS
 	int ballx: 160;
 	int bally: 100;
 	
-	int ballyh: 110;
-	
 	int ballyDir: 0;
 	
 	int leftColx: 50;
@@ -51,19 +42,23 @@ phi.Drawing:OS
 	
 	int righty: 50;
 
-	int key: 0;
+	int key:0;
+	bln keyW:false;
+	bln keyS:false;
+	bln keyO:false;
+	bln keyL:false;
 	
 	int leftPoints: 0;
 	int rightPoints: 0;
 
-	call OS.SetupInteruptTimer;
-	call OS.SetupKeyboardInterupt;
+	call OS16BIT.SetupInteruptTimer;
+	call OS16BIT.SetupKeyboardInterupt;
 
-	[OS.TimerEvent]
+	[OS16BIT.TimerEvent]
 
-		call OS.DrawRectangle:
+		call OS16BITVideo.DrawRectangle:
 			0	0
-			320	200
+			320	200	
 			Colors.Black
 		;
 		
@@ -72,10 +67,12 @@ phi.Drawing:OS
 			ballspeed is maxspeed;
 		;;
 
+
+		
 		#leftcontrol
 		
 		if lefty > 0
-			if downW
+			if keyW is 1
 				lefty--paddleSpeed;
 			;;
 		;;
@@ -83,9 +80,10 @@ phi.Drawing:OS
 			lefty is 0;
 		;;
 
-	botL is (lefty + Bot);
-	
-		if downS
+			botL is lefty;
+			botL++Bot;
+
+		if key is 's'
 
 			if botL < ScreenH
 			
@@ -95,7 +93,7 @@ phi.Drawing:OS
 		
 		#right		
 		if righty > 0
-			if downO
+			if key is 'o'
 				righty--paddleSpeed;
 			;;
 		;;
@@ -103,38 +101,30 @@ phi.Drawing:OS
 			righty is 0;
 		;;
 
-	botR is (righty + BotRight);
+			botR is righty;
+			botR++Bot;
 
-		if downL		
+		if key is 'l'
+
 			if botR < ScreenH
+			
 				righty++paddleSpeed;
 			;;
 		;;
 		
 		#ball stuff
 		
-		if ballyDir is 0
-			bally--ballspeedy;
-		;;
-		else
-			bally++ballspeedy;
-		;;
-		
-			ballyh is (bally + 10);
-		
 		if directr is 0
 			ballx -- ballspeed;
 			
 			if ballx < 20
-				if	ballyh > lefty
-					leftColx is ((lefty + Bot) + 10);
+				if	bally > lefty
+					leftColx is lefty;
+					leftColx++Bot;
 					
 					if	bally < leftColx
 						directr is 1;
 						ballspeed++; #collision
-						if Bot > 20
-							Bot--5;
-						;;
 					;;
 				;;
 			;;
@@ -143,73 +133,80 @@ phi.Drawing:OS
 			ballx ++ ballspeed;
 			
 			if ballx > 290
-				if	ballyh > righty
-					rightColx is ((righty+BotRight) + 10);
+				if	bally > righty
+					rightColx is righty;
+					rightColx++Bot;
 					
 					if	bally < rightColx
 						directr is 0;
 						ballspeed++; #collision
-						
-						if BotRight > 20
-							BotRight--5;
-						;;
 					;;
 				;;
 			;;
 		;;
 		
-		if bally < 0
+		if ballyDir is 0
+			bally--ballspeedy;
+		;;
+		else
+			bally++ballspeedy;
+		;;
+		
+		if bally < 11
 			#bounce
 			ballyDir is 1;
 		;;
 		
-		if bally > 190
+		if bally > 189
 			#bounce
 			ballyDir is 0;
 		;;
 		
 		#score
 		
-		if ballx < 0
+		if ballx < 11
 			ballx is 160;
+			bally is 100;
 			directr is 1;
 			rightPoints++; #points scored
 			ballspeed is 1;
-			Bot is 90;
-			BotRight is 90;
-			righty is 55;
-			lefty is 55;
 		;;
 		
-		if ballx > 310
+		if ballx > 309
 			ballx is 160;
+			bally is 100;
 			directr is 0;
 			leftPoints++; #points scored
 			ballspeed is 1;
-			
-			Bot is 90;
-			BotRight is 90;
-			righty is 55;
-			lefty is 55;
 		;;
 
 		#draw rectangles
 		
-		call OS.DrawRectangle:
-			ballx	bally
-			10	10	
-			Colors.White
-		;
+		if bally < 0
 		
-		call OS.DrawRectangle:
+			call OS16BITVideo.DrawRectangle:
+				ballx	bally
+				10	10	
+				Colors.Red
+			;
+		;;
+		else
+				call OS16BITVideo.DrawRectangle:
+				ballx	bally
+				10	10	
+				Colors.Blue
+			;
+		;;
+		
+		call OS16BITVideo.DrawRectangle:
 			10	lefty
 			10	Bot	
 			Colors.LightGreen
 		;
 		
-		call OS.DrawRectangle:
+		call OS16BITVideo.DrawRectangle:
 			300	righty
-			10	BotRight
+			10	Bot
 			Colors.LightGreen
 		;
 
@@ -217,14 +214,10 @@ phi.Drawing:OS
 	
 	
 	
-	[OS.KeyboardEvent]
+	[OS16BIT.KeyboardEvent]
 
-		call key is OS.GetKey;
-		
-		call downW is OS.IsKeyDown:'w';
-		call downS is OS.IsKeyDown:'s';
-		call downO is OS.IsKeyDown:'o';
-		call downL is OS.IsKeyDown:'l';
+		call key is OS16BIT.GetKey;
+		call keyW is OS16BIT.IsKeyDown:'w';
 
 	[end]
 	

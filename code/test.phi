@@ -1,0 +1,21 @@
+phi.Hello:OS16BIT
+{
+   	str newline: '\r\n';
+	int i: 12;
+	int y: 7;
+	int t: 3;
+	
+	int val: 0;
+	
+	log 'test';
+	#                 23                4
+	val is ((5 + (y * 3) - 3) % t);
+	
+	if val > 2 
+		log 'hello';
+		log newline;
+		log val;
+	;;
+	
+	
+}
