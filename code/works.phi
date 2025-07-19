@@ -3,6 +3,7 @@ phi.Hello:Bootloader
 	str hello: 'Hello, World!\r\n';
     str newline: '\r\n';
 	str name:[40];
+	int vlaue: 20;
 	
 	log 'What is your name: ';
 	ask name;
@@ -10,6 +11,8 @@ phi.Hello:Bootloader
 	log 'hello: ' name;
 	log newline;
 	log 'Press any key to continue...';
+	vlaue *= 3;
+	log vlaue;
 	
 	call Bootloader.WaitForKeyPress;
 	call Bootloader.JumpToSectorTwo;

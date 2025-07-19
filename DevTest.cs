@@ -157,7 +157,7 @@ public partial class DevTest : Control
 
 					File.WriteAllBytes(path + "\\os.bin", opsys.ToArray());
 
-					if(assmblr != "") EnterCommand("qemu-system-x86_64 -fda " + path + "\\os.bin");
+					if(assmblr != "") EnterCommand("qemu-system-x86_64 -drive format=raw,file=" + path + "\\os.bin");
 				}
 
 			}
