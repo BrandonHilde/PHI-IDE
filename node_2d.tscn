@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://d21xawevkt0si"]
 
-[ext_resource type="Script" path="res://CodeEdit.cs" id="1_balps"]
-[ext_resource type="Script" path="res://DevTest.cs" id="1_q6qp2"]
-[ext_resource type="Script" path="res://FileTree.cs" id="2_0q1xl"]
+[ext_resource type="Script" uid="uid://celhqamvwfl6i" path="res://CodeEdit.cs" id="1_balps"]
+[ext_resource type="Script" uid="uid://bkhfm7js24sry" path="res://DevTest.cs" id="1_q6qp2"]
+[ext_resource type="Script" uid="uid://ck2gn0sslmjjn" path="res://FileTree.cs" id="2_0q1xl"]
 [ext_resource type="Texture2D" uid="uid://c8s57v1oxqtoj" path="res://play.svg" id="2_y31gn"]
 [ext_resource type="Texture2D" uid="uid://uwg6dhjv1kk1" path="res://stop.svg" id="3_78xuh"]
 [ext_resource type="Texture2D" uid="uid://bu8aogal447mw" path="res://phialt.png" id="6_wvtb1"]
@@ -106,6 +106,7 @@ offset_bottom = 41.0
 selected = 0
 item_count = 2
 popup/item_0/text = "FASM"
+popup/item_0/id = 0
 popup/item_1/text = "NASM"
 popup/item_1/id = 1
 

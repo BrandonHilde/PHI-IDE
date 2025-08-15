@@ -24,6 +24,9 @@ phi.Drawing:OS
 	int ScreenW: 320;
 	int ScreenH: 200;
 	
+	int MouseX: 100;
+	int MouseY: 100;
+		
 	int lefty: 50;
 	int Bot: 90;
 	int BotRight: 90;
@@ -58,7 +61,8 @@ phi.Drawing:OS
 
 	call OS.SetupInteruptTimer;
 	call OS.SetupKeyboardInterupt;
-
+	call OS.SetupMouse;
+	
 	[OS.TimerEvent]
 
 		call OS.DrawRectangle:
@@ -192,8 +196,20 @@ phi.Drawing:OS
 			righty is 55;
 			lefty is 55;
 		;;
+		
+		#get mouse
+		
+		call OS.GetMouseData;
+		call MouseX is OS.GetMouseX;
+		call MouseY is OS.GetMouseY;
 
 		#draw rectangles
+		
+		call OS.DrawRectangle:
+			MouseX	MouseY
+			10	10
+			Colors.Blue
+		;
 		
 		call OS.DrawRectangle:
 			ballx	bally
